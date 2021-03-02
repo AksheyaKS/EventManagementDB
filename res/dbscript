@@ -1,0 +1,7 @@
+CREATE TABLE event_management(
+			serialNumber varchar(4) CONSTRAINT event_management_serialNumber_pk PRIMARY KEY,
+			title varchar(20) CONSTRAINT event_management_title_unique UNIQUE,
+			location varchar(10) CONSTRAINT event_management_location_nn NOT NULL,
+			startDate date CONSTRAINT library_book_publishDate_chk CHECK(startDate >= current_date),
+			cost float CONSTRAINT library_book_price_chk CHECK(cost >= 5 AND cost <= 5000)
+);
