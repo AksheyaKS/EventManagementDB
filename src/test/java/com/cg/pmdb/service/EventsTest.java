@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.cg.pmdb.exception.EventManagementException;
@@ -31,26 +32,29 @@ class EventsTest {
 	}
 	
 	@Test
+	@DisplayName("Should return serialNumber of event")
 	void testAddEvent(Event event) throws EventManagementException {
 		
-		Event e = new Event("E105", "Quincanera", "Pune", LocalDate.parse("25-09-2021", DateTimeFormatter.ofPattern("dd-MM-yyyy")), 500);
+		Event e = new Event("E105", "Quincanera", "Pune", LocalDate.parse("25-09-2021", DateTimeFormatter.ofPattern("dd-MM-yyyy")), 500.0);
 		String expected = "E105";
         String actual = service.add_event(e);
         assertEquals(expected, actual);
 	}
 	
 	@Test
+	@DisplayName("Should return exception")
 	void eventAddWithException(Event event) throws EventManagementException {
 		
 		assertThrows(EventManagementException.class, ()-> {
 			
-			Event e = new Event("105", "Blooper", "Chennai", LocalDate.parse("27-12-2021", DateTimeFormatter.ofPattern("dd-MM-yyyy")), 500);
+			Event e = new Event("105", "Blooper", "Chennai", LocalDate.parse("27-12-2021", DateTimeFormatter.ofPattern("dd-MM-yyyy")), 500.0);
 			service.add_event(e);
 			
 		});
 	}
 	
 	@Test
+	@DisplayName("Should return true")
 	void testRemoveEvent(String serialNumber) throws EventManagementException {
 		
 		serialNumber = "E105";
